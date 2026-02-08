@@ -3,8 +3,8 @@ import Navbar from "../components/Navbar";
 import RateLimiterUI from "../components/RateLimiterUI";
 import toast from "react-hot-toast";
 import NoteCard from "../components/NoteCard";
-import api from "../components/lib/axios";
 import NotesNotFound from "../components/NotesNotFound";
+import api from "../components/lib/axios.js";
 
 export default function HomePage() {
   const [isRateLimited, setIsRateLimited] = useState(false);
@@ -20,7 +20,7 @@ export default function HomePage() {
         setIsRateLimited(false);
       } catch (error) {
         console.log("Error fetching notes", error);
-        if (error.response.status === 429) {
+        if (error.response?.status === 429) {
           setIsRateLimited(true);
         } else {
           toast.error("Failed to load note");
